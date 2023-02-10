@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UiModule } from './ui/ui.module';
+import { CounterModule } from './counter/counter.module';
 
 const PUBLIC_MODULES = [
-    UiModule
+    UiModule,
+    CounterModule,
 ]
 
 @NgModule({
