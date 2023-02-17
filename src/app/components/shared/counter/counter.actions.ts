@@ -1,11 +1,5 @@
 import { createAction } from '@ngrx/store';
 
-const actionNameCreator = (component: string) => (action: string) => {
-    return `[${component}] ${action}`;
-}
-
-const getActionName = actionNameCreator('Counter Component');
-
-export const increase = createAction(getActionName('Increase'));
-export const decrease = createAction(getActionName('Decrease'));
-export const reset = createAction(getActionName('Reset'));
+export const increase = createAction('[Counter] Increase');
+export const decrease = createAction('[Counter] Decrease');
+export const reset = createAction('[Counter] Reset');

@@ -1,0 +1,11 @@
+<div>
+    <i *ngIf="loading$ | async; else loaded">Loading...</i>
+
+    <ng-template #loaded>
+        <p>Sunny -> {{ (weather$ | async)?.sunny }}</p>
+
+        <p *ngIf="error$ | async">{{ (error$ | async)?.message }}</p>
+    </ng-template>
+
+    <button (click)="fetch()">Fetch</button>
+</div>

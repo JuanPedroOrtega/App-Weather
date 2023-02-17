@@ -1,6 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './components/shared/shared.module';
@@ -12,12 +14,19 @@ import { WeatherShowcaseModule } from './components/pages/weather-showcase/weath
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+//
+
+import { httpInterceptorProviders } from './services/interceptors';
+//
+
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
         BrowserModule,
         StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+        EffectsModule.forRoot(),
         CoreModule,
         SharedModule,
         AppRoutingModule,
@@ -25,7 +34,9 @@ import { AppComponent } from './app.component';
         CurrentWeatherPageModule,
         WeatherShowcaseModule,
     ],
-    providers: [],
+    providers: [
+        httpInterceptorProviders
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
