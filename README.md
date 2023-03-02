@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# ENV
+
+| Name    | Required | Type   | Default | Description                  |
+|---------|----------|--------|---------|------------------------------|
+| OWM_API | yes      | String |         | API Key for Open Weather Map |
+
+# NPM Scripts
+
+## config
+Updates an Angular env file using process.env variables -> `npm run config -- --environment=prod`

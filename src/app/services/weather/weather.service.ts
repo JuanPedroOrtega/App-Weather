@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { AppWeather, Coord, WeatherResponse } from 'src/app/models/weather';
+import { environment } from 'src/environments/environment';
 import { WeatherMapperService } from './weather-mapper.service';
 
 @Injectable({
@@ -25,7 +26,7 @@ export class WeatherService {
 
     private getUrl({ lat, lon }: Coord): string {
         const baseUrl = 'https://api.openweathermap.org/data/2.5'
-        const key = 'API_KEY';
+        const key = environment.weatherApi;
 
         return `${baseUrl}/weather?lat=${lat}&lon=${lon}&appid=${key}&units=${this.units}&lang=${this.lang}`;
     }
