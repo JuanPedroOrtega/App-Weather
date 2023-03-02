@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, delay, map, mergeMap, withLatestFrom } from 'rxjs/operators';
 
-import { Weather } from '../weather';
-import { WeatherService } from '../weather.service';
+import { Weather } from '@models/weather';
+
+import { WeatherService } from '@services/weather/weather.service';
 import { fetchWeatherSuccess, fetchWeatherError, fetchWeatherStart, fetchWeather } from './weather.actions';
+import { Action, Store } from '@ngrx/store';
+import { selectCityCoords, WeatherState } from './weather.reducer';
 
 @Injectable()
 export class WeatherEffects {
@@ -23,11 +26,17 @@ export class WeatherEffects {
     loadWeather$ = createEffect(() =>
         this.actions.pipe(
             ofType(fetchWeatherStart),
-            mergeMap(() => this.service.fetchWeather()
+            // pass the store state to the map
+            withLatestFrom(this.store.select(selectCityCoords)),
+            mergeMap(([ _, coords ]) => this.service.getTodayWeather(coords)
             .pipe(
+                delay(500),
                 map((weather: Weather) => fetchWeatherSuccess(weather)),
                 catchError((error: Error) => of(fetchWeatherError({ error })))
             ))));
 
-    constructor(private actions: Actions, private service: WeatherService) {}
+    constructor(
+        private actions: Actions,
+        private service: WeatherService,
+        private readonly store: Store<WeatherState>) {}
 }

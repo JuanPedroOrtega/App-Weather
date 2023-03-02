@@ -20,8 +20,10 @@
         "useDefineForClassFields": false,
         "paths": {
             "@env/*": ["./src/environments/*"],
-            "@app/*": ["./src/app/*"],
+            "@core/*": ["./src/app/modules/core/*"],
             "@components/*": ["./src/app/components/*"],
+            "@models/*": ["./src/app/models/*"],
+            "@services/*": ["./src/app/services/*"],
         }
     },
     "angularCompilerOptions": {

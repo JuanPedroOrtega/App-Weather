@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AppWeather, WeatherResponse } from 'src/app/models/weather';
 
-@Injectable({
-    providedIn: 'root',
-})
+import { OpenWeatherResponse } from '@models/owm';
+import { Weather } from '@models/weather';
+
+@Injectable()
 export class WeatherMapperService {
     constructor() {}
 
-    public map(response: WeatherResponse, units = 'metric'): AppWeather {
+    public map(response: OpenWeatherResponse, units = 'metric'): Weather {
         const mainWeather = response.weather[0];
         // const otherWeather = response.weather[0];
         return {
