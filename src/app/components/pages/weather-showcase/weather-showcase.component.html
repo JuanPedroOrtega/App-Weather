@@ -1,0 +1,13 @@
+<div style="display: flex; justify-content: space-evenly;">
+    <div *ngFor="let group of codes">
+        {{ group.group }}
+        <ul style="list-style: none;">
+            <li *ngFor="let code of group.codes">
+                <i *ngIf="[613].indexOf(code) !== -1" style="font-size: 36px; color: #924da3;" class="wi wi-sleet"></i>
+                <i *ngIf="[751].indexOf(code) !== -1" style="font-size: 36px; color: #924da3;" class="wi wi-sandstorm"></i>
+
+                <i *ngIf="[613, 751].indexOf(code) === -1" style="font-size: 36px; color: #924da3;" class="wi wi-owm-{{ code }}"></i>
+            </li>
+        </ul>
+    </div>
+</div>

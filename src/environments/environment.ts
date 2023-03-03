@@ -4,6 +4,8 @@
 
 export const environment = {
     production: false,
+    weatherApi: '',
+    version: 'v0.0.0'
 };
 
 /*
