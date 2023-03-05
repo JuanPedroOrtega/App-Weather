@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { CoreModule } from '@core/core.module';
 
 import { UiModule } from './ui/ui.module';
 
 const PUBLIC_MODULES = [
-    UiModule
+    UiModule,
 ]
 
 @NgModule({
     declarations: [],
     imports: [
-        CommonModule,
+        CoreModule,
         ...PUBLIC_MODULES
     ],
     exports: [

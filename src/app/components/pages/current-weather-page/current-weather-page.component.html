@@ -1,29 +1,28 @@
-<select [(ngModel)]="lang">
+<select [value]="lang$ | async" (change)="changeLang($event)">
     <option value="es">ES</option>
     <option value="en">EN</option>
     <option value="fr">FR</option>
 </select>
-<select [(ngModel)]="units">
+<select [value]="units$ | async" (change)="changeUnits($event)">
     <option value="metric">Celsius</option>
     <option value="imperial">Fahrenheit</option>
     <option value="standard">Kelvin</option>
 </select>
-<select [(ngModel)]="city">
+<select [value]="city$ | async" (change)="changeCity($event)">
     <option value="">Pick a city</option>
     <option value="le-vesinet">Le Vesinet</option>
     <option value="bergen">Bergen</option>
     <option value="reykjavik">Reykjavik</option>
     <option value="madrid">Madrid</option>
 </select>
-<button (click)="fetch()" [disabled]="!city">Fetch</button>
+<button (click)="fetch()" [disabled]="!(city$ | async)">Fetch</button>
 
-<ng-container *ngIf="weather">
-    <p>City: {{ weather.cityName }} ({{ weather.country }})</p>
-    <p>Weather: {{ weather.weather.main.description }} <app-weather-icon [icon]="getIcon(weather.weather.main.code)"></app-weather-icon></p>
-    <p>Temp: {{weather.temperatureWithUnits.current}} (feeling of {{weather.temperatureWithUnits.feelsLike}})
-        {{weather.temperatureWithUnits.min}}/{{weather.temperatureWithUnits.max}}</p>
-    <p>
-        <app-weather-icon icon="sunrise"></app-weather-icon> {{ weather.time.sunrise | date : 'shortTime' }}
-        <app-weather-icon icon="sunset"></app-weather-icon> {{ weather.time.sunset | date : 'shortTime' }}
-    </p>
-</ng-container>
+<div>
+    <i *ngIf="loading$ | async; else loaded">Loading...</i>
+
+    <ng-template #loaded>
+        <app-weather-display [weather]="weather$ | async"></app-weather-display>
+
+        <p *ngIf="error$ | async">{{ (error$ | async)?.message }}</p>
+    </ng-template>
+</div>

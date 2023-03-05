@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
-import { CoreModule } from 'src/app/modules/core/core.module';
+import { CoreModule } from '@core/core.module';
+
 import { HomePageRoutingModule } from './home-page-routing.module';
 
 @NgModule({

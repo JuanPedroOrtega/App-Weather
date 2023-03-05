@@ -1,0 +1,14 @@
+<ng-container *ngIf="weather && weather.cityName; else noWeather ">
+    <p>City: {{ weather.cityName }} ({{ weather.country }})</p>
+    <p>Weather: {{ weather.weather.main.description }} <app-weather-icon [icon]="getIcon(weather.weather.main.code)"></app-weather-icon></p>
+    <p>Temp: {{weather.temperatureWithUnits.current}} (feeling of {{weather.temperatureWithUnits.feelsLike}})
+        {{weather.temperatureWithUnits.min}}/{{weather.temperatureWithUnits.max}}</p>
+    <p>
+        <app-weather-icon icon="sunrise"></app-weather-icon> {{ weather.time.sunrise | date : 'shortTime' }}
+        <app-weather-icon icon="sunset"></app-weather-icon> {{ weather.time.sunset | date : 'shortTime' }}
+    </p>
+</ng-container>
+
+<ng-template #noWeather>
+    No weather information available
+</ng-template>
