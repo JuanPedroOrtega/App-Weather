@@ -24,6 +24,7 @@
             "@components/*": ["./src/app/components/*"],
             "@models/*": ["./src/app/models/*"],
             "@services/*": ["./src/app/services/*"],
+            "@utils/*": ["./src/app/utils/*"],
         }
     },
     "angularCompilerOptions": {

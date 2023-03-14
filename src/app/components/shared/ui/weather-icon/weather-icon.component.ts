@@ -8,4 +8,7 @@ import { Component, Input } from '@angular/core';
 export class WeatherIconComponent {
     @Input()
     public icon: string | undefined = undefined;
+
+    @Input()
+    public size: string = '';
 }

@@ -13,11 +13,7 @@ const routes: Routes = [
     },
     {
         path: 'showcase',
-        loadChildren: () => import('./components/pages/weather-showcase/weather-showcase-routing.module').then(m => m.WeatherShowcaseRoutingModule)
-    },
-    {
-        path: 'weather',
-        loadChildren: () => import('./components/pages/current-weather-page/current-weather-page.module').then(m => m.CurrentWeatherPageModule)
+        loadChildren: () => import('./components/pages/weather-showcase/weather-showcase.module').then(m => m.WeatherShowcaseModule)
     },
 ];
 

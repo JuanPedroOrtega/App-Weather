@@ -1,4 +1,7 @@
-i {
-    font-size: 36px;
+.app-icon {
     color: #924da3;
+
+    &.size-2x {
+        font-size: 36px;
+    }
 }
