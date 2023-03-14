@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavigationComponent, NavigationConfig } from '@components/shared/ui/navigation/navigation.component';
+
+import { NavigationBuilder, NavigationConfig } from '@utils/builders/navigation.builder';
 
 @Component({
     selector: 'app-root',
@@ -10,8 +11,8 @@ export class AppComponent {
     public navigationConfig: NavigationConfig;
 
     constructor() {
-        this.navigationConfig = NavigationComponent
-            .config([
+        this.navigationConfig = NavigationBuilder.new()
+            .withItems([
                 {
                     label: 'Home',
                     link: '/home',

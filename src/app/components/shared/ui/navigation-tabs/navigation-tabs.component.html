@@ -1,0 +1,23 @@
+<div class="tabs" *ngIf="config">
+    <input
+        *ngFor="let item of config.items; let i = index"
+        type="radio"
+        [id]="'link_' + i"
+        name="tab-control"
+        [routerLink]="item.link"
+        [checked]="activeRoute === item.link" />
+
+    <ul>
+        <li *ngFor="let item of config.items; let i = index" [title]="item.label">
+            <label [for]="'link_' + i" role="button">
+                <app-weather-icon *ngIf="item.icon" style="margin-right: 7px;" [icon]="item.icon" /><span>{{ item.label }}</span>
+            </label>
+        </li>
+    </ul>
+
+    <div class="slider"><div class="indicator"></div></div>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
