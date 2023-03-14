@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationComponent, NavigationConfig } from '@components/shared/ui/navigation/navigation.component';
 
 @Component({
     selector: 'app-root',
@@ -6,5 +7,20 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    title = 'weather-app';
+    public navigationConfig: NavigationConfig;
+
+    constructor() {
+        this.navigationConfig = NavigationComponent
+            .config([
+                {
+                    label: 'Home',
+                    link: '/home',
+                },
+                {
+                    label: 'LogIn',
+                    link: '/showcase',
+                },
+            ])
+            .build();
+    }
 }

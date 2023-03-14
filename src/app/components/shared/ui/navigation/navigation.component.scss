@@ -1,54 +1,92 @@
-ul {
-    list-style-type: none;
+$size: 30px;
+
+.container, .nav, .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    position: relative;
+    background-color: #fff;
+    padding: 11px;
+    transition: 0.5s;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(0,0,0,.2);
+}
+
+.menu {
     margin: 0;
     padding: 0;
+    width: 0;
     overflow: hidden;
-    background-color: #38444d;
+    transition: 0.5s;
 }
 
-li {
-    float: left;
+.nav input:checked {
+    // Generate classes for different sizes
+    @for $i from 1 through 10 {
+        ~ .menu.items-#{$i} {
+            width: calc(90px * $i);
+        }
+    }
 }
 
-li a,
-.dropbtn {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.menu li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+.menu li a {
     text-decoration: none;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.5s;
 }
 
-li a:hover,
-.dropdown:hover .dropbtn {
-    background-color: red;
+.menu li a:hover {
+    color: #161919;
 }
 
-li.dropdown {
-    display: inline-block;
+.nav input {
+    width: $size;
+    height: $size;
+    cursor: pointer;
+    opacity: 0;
 }
 
-.dropdown-content {
-    display: none;
+.nav span {
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
+    left: calc($size - 10px);
+    width: calc($size - 10px);
+    height: 4px;
+    border-radius: 50px;
+    background-color: #666;
+    pointer-events: none;
+    transition: 0.5s;
+    transition: display 1s;
 }
 
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+.nav input:checked ~ span {
+    background-color: #f974a1;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
+.nav span:nth-child(2) {
+    transform: translateY(-8px);
 }
 
-.dropdown:hover .dropdown-content {
-    display: block;
+.nav input:checked ~ span:nth-child(2) {
+    transform: translateY(0) rotate(-45deg);
+}
+.nav span:nth-child(3) {
+    transform: translateY(8px);
+}
+
+.nav input:checked ~ span:nth-child(3) {
+    transform: translateY(0) rotate(45deg);
+}
+.nav input:checked ~ span:nth-child(4) {
+    display: none;
 }

@@ -21,6 +21,19 @@ OWM_API=API_KEY
 ### config
 Updates an Angular env file using process.env variables -> `npm run config -- --environment=prod`
 
+## New Page
+
+* Create the new module (with routing) `npx ng generate module component/pages/new_page --routing` or `npx ng g m component/pages/new_page --routing`
+* Create the component for that page `npx ng generate component component/pages/new_page` or `npx ng g c component/pages/new_page`
+* Set the routes as needed
+* Import the custom modules and ensure the component is declared
+  * ```js
+    @NgModule({
+      declarations: [NewPageComponent],
+      imports: [/* Replace CommonModule */CoreModule, NewPageRoutingModule],
+    })
+  ```
+
 ## NgRX
 
 ### Code creation
